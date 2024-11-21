@@ -9,14 +9,14 @@ import java.io.IOException;
 
 public class PasswordProcessing {
 
-    private static final String JSON_FILE = "src\\main\\java\\resource\\PublicFile.json";
+    private static final String JSON_FILE = "/Users/elisabetbirgisdottir/Documents/GitHub/Data_security_B_RoleBased/src/main/java/resource/PublicFile.json";
 
     public boolean passwordPros(String username, String password){
         System.out.println(username + " ... " + password);
         try{
             //parsing the PublicFile.json
             ObjectMapper mapper = new ObjectMapper();
-            JsonNode rootNode = mapper.readTree(new File(JSON_FILE));
+           JsonNode rootNode = mapper.readTree(new File(JSON_FILE));
             JsonNode usersNode = rootNode.path("users");
 
             //iterate over the users and check credentials
@@ -40,13 +40,22 @@ public class PasswordProcessing {
             e.printStackTrace();
         }
         return false;  
+
+
+       
+
     }
 
+    
+
+
     //    PasswordVer("Alice", "Fall2019");
-    //    PasswordVer("Bob", "ILoveManchesterUnited");
+    //    PasswordVer("GeorgeT", "ILoveManchesterUnited");
     //    PasswordVer("Cecilia", "AfterAllThisTime?");
     //    PasswordVer("David", "Boston1978");
     //    PasswordVer("Erica", "IHatePatricia");
     //    PasswordVer("Fred", "DefinitelyNotGeorge");
     //    PasswordVer("George", "DefinitelyNotFred");
+    //    PasswordVer("Henry", "Tequilaismylove")
+    //    PasswordVer("Ida", "youaresayingitwrong")
 }
