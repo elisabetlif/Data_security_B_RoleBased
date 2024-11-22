@@ -59,11 +59,13 @@ public class PrintServerImpl extends UnicastRemoteObject implements PrintServer 
         }
         Claims claims = validateToken(token);
         String requiredPermission = "print";
+        List<String> requiredRole = new ArrayList<>(List.of("Admin", "Technician", "Power_user", "User"));
         
         if(claims != null){
             boolean permission = hasPermission(claims, requiredPermission);
+            boolean role = hasRole(claims, requiredRole);
 
-            if(permission){
+            if(permission || role){
                 printerQueues.putIfAbsent(printer, new LinkedList<>());
                 printerQueues.get(printer).add(filename);
                 System.out.println("Printing document: " + filename);
@@ -89,11 +91,13 @@ public class PrintServerImpl extends UnicastRemoteObject implements PrintServer 
         }
         Claims claims = validateToken(token);
         String requiredPermission = "queue";
+        List<String> requiredRole = new ArrayList<>(List.of("Admin", "Power_user", "User"));
 
         if (claims != null) {
             boolean permission = hasPermission(claims, requiredPermission);
+            boolean role = hasRole(claims, requiredRole);
 
-            if(permission){
+            if(permission || role){
                 List<String> queueList = new ArrayList<>();
                 LinkedList<String> queue = printerQueues.get(printer);
                 
@@ -130,11 +134,13 @@ public class PrintServerImpl extends UnicastRemoteObject implements PrintServer 
         }
         Claims claims = validateToken(token);
         String requiredPermission = "topQueue";
+        List<String> requiredRole = new ArrayList<>(List.of("Admin", "Power_user"));
 
         if (claims != null) {
             boolean permission = hasPermission(claims, requiredPermission);
+            boolean role = hasRole(claims, requiredRole);
 
-            if(permission){
+            if(permission || role){
                 LinkedList<String> queue = printerQueues.get(printer);
 
                 if (queue == null || queue.isEmpty()) {
@@ -168,11 +174,14 @@ public class PrintServerImpl extends UnicastRemoteObject implements PrintServer 
         }
         Claims claims = validateToken(token);
         String requiredPermission = "start";
+        List<String> requiredRole = new ArrayList<>(List.of("Admin", "Technician"));
 
         if (claims != null) {
             boolean permission = hasPermission(claims, requiredPermission);
+            boolean role = hasRole(claims, requiredRole);
+            
 
-            if(permission){
+            if(permission || role){
                 isRunning = true;
                 System.out.println("Printer has been started");
                 return "Print has been started.";
@@ -196,11 +205,13 @@ public class PrintServerImpl extends UnicastRemoteObject implements PrintServer 
         }
         Claims claims = validateToken(token);
         String requiredPermission = "stop";
+        List<String> requiredRole = new ArrayList<>(List.of("Admin", "Technician"));
 
         if (claims != null) {
             boolean permission = hasPermission(claims, requiredPermission);
+            boolean role = hasRole(claims, requiredRole);
 
-            if(permission){
+            if(permission || role){
                 isRunning = false;
                 System.out.println("Printer has been stopped");
                 return "Print has been stopped.";    
@@ -225,11 +236,13 @@ public class PrintServerImpl extends UnicastRemoteObject implements PrintServer 
         }
         Claims claims = validateToken(token);
         String requiredPermission = "restart";
+        List<String> requiredRole = new ArrayList<>(List.of("Admin", "Technician", "Power_user"));
 
         if (claims != null) {
             boolean permission = hasPermission(claims, requiredPermission);
+            boolean role = hasRole(claims, requiredRole);
 
-            if(permission){
+            if(permission || role){
                 stop(token);
 
                 this.printerQueues.clear();
@@ -258,11 +271,13 @@ public class PrintServerImpl extends UnicastRemoteObject implements PrintServer 
         }
         Claims claims = validateToken(token);
         String requiredPermission = "status";
+        List<String> requiredRole = new ArrayList<>(List.of("Admin", "Technician"));
 
         if (claims != null) {
             boolean permission = hasPermission(claims, requiredPermission);
+            boolean role = hasRole(claims, requiredRole);
 
-            if(permission){
+            if(permission || role){
                 LinkedList<String> queue = printerQueues.get(printer);
                 String statusMessage;
         
@@ -296,11 +311,13 @@ public class PrintServerImpl extends UnicastRemoteObject implements PrintServer 
         }
         Claims claims = validateToken(token);
         String requiredPermission = "readConfig";
+        List<String> requiredRole = new ArrayList<>(List.of("Admin", "Technician"));
 
         if (claims != null) {
             boolean permission = hasPermission(claims, requiredPermission);
+            boolean role = hasRole(claims, requiredRole);
 
-            if(permission){
+            if(permission || role){
                 String value = configParameters.get(parameter);
                 if (value == null) {
                     value = "Configuration parameter \"" + parameter + "\" is not set.";
@@ -330,11 +347,13 @@ public class PrintServerImpl extends UnicastRemoteObject implements PrintServer 
         }
         Claims claims = validateToken(token);
         String requiredPermission = "setConfig";
+        List<String> requiredRole = new ArrayList<>(List.of("Admin", "Technician"));
 
         if (claims != null) {
             boolean permission = hasPermission(claims, requiredPermission);
+            boolean role = hasRole(claims, requiredRole);
 
-            if(permission){
+            if(permission || role){
                 configParameters.put(parameter, value);
                 System.out.println("Printer sets value of parameter");
                 return "Sets configuration parameter \"" + parameter + "\" to " + value; 
