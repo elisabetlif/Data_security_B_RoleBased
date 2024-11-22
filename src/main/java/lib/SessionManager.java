@@ -125,6 +125,7 @@ public class SessionManager {
             for (String accessTokenId : accessTokenIds) {
                 invalidatedAccessTokens.put(accessTokenId, expiryTime);
             }
+            return null;
         }
 
         return tokenData.getUsername();

@@ -1,0 +1,22 @@
+Nov 22, 2024 6:44:34 PM Implementation.PrintServerImpl start
+INFO: Alice: start
+Nov 22, 2024 6:44:34 PM Implementation.PrintServerImpl print
+INFO: Alice: print
+Nov 22, 2024 6:44:34 PM Implementation.PrintServerImpl print
+INFO: Alice: print
+Nov 22, 2024 6:44:34 PM Implementation.PrintServerImpl queue
+INFO: Alice: queue
+Nov 22, 2024 6:44:34 PM Implementation.PrintServerImpl print
+WARNING: Server: Unauthorized - Access token validation failed. User not authorized.
+Nov 22, 2024 6:44:34 PM Implementation.PrintServerImpl print
+INFO: George: print
+Nov 22, 2024 6:44:34 PM Implementation.PrintServerImpl stop
+WARNING: Server: Unauthorized, insufficient role or permission to stop.
+Nov 22, 2024 6:44:35 PM Implementation.PrintServerImpl setConfig
+INFO: GeorgeT: readConfig
+Nov 22, 2024 6:45:35 PM Implementation.PrintServerImpl readConfig
+WARNING: Server: Unauthorized - Access token validation failed. User not authorized.
+Nov 22, 2024 6:45:35 PM Implementation.PrintServerImpl readConfig
+INFO: GeorgeT: readConfig
+Nov 22, 2024 6:47:35 PM Implementation.PrintServerImpl setConfig
+WARNING: Server: Unauthorized - Access token validation failed. User not authorized.

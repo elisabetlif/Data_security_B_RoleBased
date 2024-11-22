@@ -16,7 +16,7 @@ public class ServerMain {
             Registry registry = LocateRegistry.createRegistry(1099);
             
             final long idleTimeout = 30 * 1000; // 30 seconds
-            final long absoluteTimeout = 60 * 1000; // 1 minutes
+            final long absoluteTimeout = 60 * 1000 + 30 * 1000; // 1.5 minutes
             SessionManager sManager = new SessionManager(idleTimeout, absoluteTimeout);
 
             
