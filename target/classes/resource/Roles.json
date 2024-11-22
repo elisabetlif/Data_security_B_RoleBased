@@ -1,0 +1,29 @@
+
+{
+
+"Roles":[
+    {
+        "role": "Admin",
+        "permissions": ["topQueue","print","queue","start", "stop", "restart", "status", "readConfig","setConfig"],
+        "users": ["Alice"]
+    },
+    {
+        "role": "Technician",
+        "permissions": ["start", "stop", "restart", "status", "readConfig","setConfig"],
+        "users": ["GeorgeT"]
+    },
+    {
+        "role": "Power_user",
+        "permissions": ["topQueue","print","queue", "restart"],
+        "users": ["Cecilia","Ida"]
+    },
+    {
+        "role": "User",
+        "permissions": ["print","queue"],
+        "users": ["David", "Erica", "Fred", "George", "Henry"]
+
+    }
+
+
+]
+}

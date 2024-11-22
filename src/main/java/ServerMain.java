@@ -15,8 +15,8 @@ public class ServerMain {
             // Start the RMI registry programmatically on port 1099
             Registry registry = LocateRegistry.createRegistry(1099);
             
-            final long idleTimeout = 60 * 1000; // 1 minutes
-            final long absoluteTimeout = 5 * 60 * 60 * 1000; // 5 hours
+            final long idleTimeout = 30 * 1000; // 30 seconds
+            final long absoluteTimeout = 60 * 1000; // 1 minutes
             SessionManager sManager = new SessionManager(idleTimeout, absoluteTimeout);
 
             
@@ -40,19 +40,3 @@ public class ServerMain {
         }
     }
 }
-
-
-            // Custom RMIServerSocketFactory for configuring server sockets
-            /*
-             * RMIServerSocketFactory serverSocketFactory = new RMIServerSocketFactory() {
-                @Override
-                public ServerSocket createServerSocket(int port) throws IOException {
-                    // You can add custom settings here
-                    return new ServerSocket(port);
-                }
-            };
-             */
-            
-
-            // Custom RMIClientSocketFactory for clients to connect to the server sockets
-            //RMIClientSocketFactory clientSocketFactory = new CustomRMIClientSocketFactory();
